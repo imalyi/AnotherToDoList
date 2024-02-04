@@ -4,6 +4,32 @@ services:
     build: .
     ports:
       - "8121:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+    healthcheck:
+      test: [ "CMD", "ping", "-c", "1", "-W", "1", "127.0.0.1:8000" ]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    env_file:
+      - .env
+
+  db:
+    image: mysql:8.2.0
+    container_name: "db"
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+        - '3306:3306'
+    volumes:
+        - db_data:/var/lib/mysql
+    healthcheck:
+        test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+        timeout: 5s
+        retries: 10
 
 volumes:
   db_data:

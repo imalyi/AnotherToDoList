@@ -1,10 +1,21 @@
 from pathlib import Path
 from datetime import timedelta
+import os
+import logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-zrt1e^&t840whz_r)%oz9z#hr(o_2+dx3d3p!())e7kjovwts6'
-DEBUG = True
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+
+if os.environ.get('DJANGO_SECRET_KEY'):
+    SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+else:
+    SECRET_KEY = 'THIS KEY IS NOT SECRET'
+    logging.critical("Set DJANGO_SECRET_KEY variable")
+
+DEBUG = os.environ.get('DJANGO_DEBUG', True)
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '0.0.0.0').split(',')
+ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,12 +62,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'another_todo_list.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get('DB_NAME'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': os.environ.get('DB_HOST'),
+            'PORT': os.environ.get('DB_PORT'),
+        }
     }
-}
+else:
+    logging.info("Using sqlite DB")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'db.sqlite3',
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -76,6 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
 USE_TZ = True
 STATIC_URL = 'static/'
