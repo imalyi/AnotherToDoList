@@ -27,5 +27,3 @@ python3 manage.py createsuperuser
 
 ## Description
 In my opinion, Redoc provides the best documentation for endpoints. It is widely used and can significantly increase the speed of development. After deploying the application, you can access the API documentation by visiting /redoc.
-
-If you don't want to do it, I deployed this app to my test environment with Docker Compose and Cloudflare Zero Trust. Visit https://testapp.cityinminutes.me (the domain name is used for another project, so its name may seem unusual). Use username `test` and password `test` to access admin panel.
