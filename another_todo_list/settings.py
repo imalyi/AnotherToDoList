@@ -14,8 +14,6 @@ else:
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS', '0.0.0.0')]
-CSRF_COOKIE_DOMAIN = ALLOWED_HOSTS[0]
-CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS[0]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
