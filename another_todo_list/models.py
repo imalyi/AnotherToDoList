@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, IntegerField, BooleanField, DateTimeField, ForeignKey, CASCADE, SET_NULL, ManyToManyField
+from django.db.models import Model, CharField,  BooleanField, DateTimeField, ForeignKey, CASCADE, SET_NULL, ManyToManyField
 from django.contrib.auth.models import User
 
 
@@ -42,7 +42,8 @@ class Task(Model):
 
 class ToDoList(Model):
     title = CharField(max_length=250, unique=True)
-    tasks = ManyToManyField(Task)
+    tasks = ManyToManyField(Task, default=None)
+    owner = ForeignKey(User, on_delete=CASCADE)
 
     class Meta:
         verbose_name = 'ToDoList'

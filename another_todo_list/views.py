@@ -1,10 +1,9 @@
 from rest_framework import viewsets
-from AnotherToDoList.models import Category, Task, ToDoList
-from AnotherToDoList.serializers import CategorySerializer, TaskSerializer, ToDoListSerializer
+from another_todo_list.models import Category, Task, ToDoList
+from another_todo_list.serializers import CategorySerializer, TaskSerializer, ToDoListSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.tokens import AccessToken
-from AnotherToDoList.permissions import IsOwnerOrReadOnly
+from another_todo_list.permissions import IsOwnerOrReadOnly
 
 
 class UserOwnedModelViewSet(viewsets.ModelViewSet):

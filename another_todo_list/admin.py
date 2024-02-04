@@ -1,8 +1,9 @@
 from django.contrib import admin
-from AnotherToDoList.models import Category, Task, ToDoList
+from another_todo_list.models import Category, Task, ToDoList
 from django.contrib.auth.models import User
 from django.db.models import Count
 from django.contrib.auth.admin import UserAdmin
+
 
 class CustomAdminSite(admin.AdminSite):
     site_header = 'ToDo List Administration'

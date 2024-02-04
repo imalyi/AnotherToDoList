@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     'drf_yasg',
-    'AnotherToDoList'
+    'another_todo_list'
 ]
 
 MIDDLEWARE = [
@@ -30,7 +30,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'AnotherToDoList.urls'
+ROOT_URLCONF = 'another_todo_list.urls'
 
 TEMPLATES = [
     {
@@ -49,7 +49,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'AnotherToDoList.wsgi.application'
+WSGI_APPLICATION = 'another_todo_list.wsgi.application'
 
 DATABASES = {
     'default': {

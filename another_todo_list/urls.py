@@ -1,8 +1,7 @@
-from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-from AnotherToDoList.views import CategoryViewSet, TaskViewSet, ToDoListViewSet
-from AnotherToDoList.admin import custom_admin_site
+from another_todo_list.views import CategoryViewSet, TaskViewSet, ToDoListViewSet
+from another_todo_list.admin import custom_admin_site
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -27,7 +26,7 @@ schema_view = get_schema_view(
 router = DefaultRouter()
 router.register('categories', CategoryViewSet, basename='category')
 router.register('tasks', TaskViewSet, basename='task')
-router.register('todo-list', ToDoListViewSet, basename='todo')
+router.register('todos', ToDoListViewSet, basename='todos')
 
 urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
