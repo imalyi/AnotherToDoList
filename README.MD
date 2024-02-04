@@ -9,19 +9,23 @@ To deploy the application, use the following commands:
 ```bash
 docker-compose up -d
 docker exec -it [container_name_or_id] /bin/bash
+```
 
 Run tests: 
+```bash
 python3 manage.py test
-
+```
 Make migrations:
-
+```bash
 python3 manage.py makemigrations
 python3 manage.py migrate
 
 python3 manage.py makemigrations another_todo_list
 python3 manage.py migrate another_todo_list
+```
 
 Create superuser:
+```bash
 python3 manage.py createsuperuser
 ```
 
